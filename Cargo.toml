@@ -1,5 +1,5 @@
 [package]
-name = "tailwindcss-yew-template"
+name = "yew-spotify"
 version = "0.1.0"
 edition = "2021"
 
