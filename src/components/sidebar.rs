@@ -1,8 +1,8 @@
 use std::rc::Rc;
 use yew::prelude::*;
-use yew_router::prelude::*;
 use yew::virtual_dom::VNode;
 use yew_icons::{Icon, IconId};
+use yew_router::prelude::*;
 
 use crate::Routes;
 
@@ -35,7 +35,6 @@ const LINKS: [LinkData; 4] = [
     },
 ];
 
-
 fn nav_items(onclick_cb: Option<Callback<MouseEvent>>) -> Html {
     html! {
         <div class={classes!("mt-10")}>
@@ -56,17 +55,20 @@ fn nav_items(onclick_cb: Option<Callback<MouseEvent>>) -> Html {
 #[function_component(SideBar)]
 pub fn sidebar() -> Html {
     let mobile_menu_open = Rc::new(use_state(|| false));
+    let onclick = mobile_menu_open.clone();
 
     let mobile_menu_icon;
     let mobile_menu_classes;
 
-    if !*mobile_menu_open {
-        mobile_menu_icon = html! { <Icon icon_id={IconId::FontAwesomeSolidBars} onclick={Callback::from(move |_| mobile_menu_open.set(true))} /> };
+    if !**mobile_menu_open {
+        mobile_menu_icon = html! { <Icon icon_id={IconId::FontAwesomeSolidBars} onclick={Callback::from(move |_| onclick.set(true))} /> };
         mobile_menu_classes = classes!("-left-full");
     } else {
-        mobile_menu_icon = html! { <Icon icon_id={IconId::FontAwesomeSolidXmark} onclick={Callback::from(move |_| mobile_menu_open.set(false))} /> };
+        mobile_menu_icon = html! { <Icon icon_id={IconId::FontAwesomeSolidXmark} onclick={Callback::from(move |_|onclick.set(false))} /> };
         mobile_menu_classes = classes!("left-0");
     };
+
+    let onclick = mobile_menu_open.clone();
 
     html! {
         <>
@@ -80,7 +82,7 @@ pub fn sidebar() -> Html {
             </div>
 
             <div class={classes!("absolute", "top-0", "h-screen", "w-2/3", "bg-gradient-to-tl", "from-white/10", "to-[#483D8B]", "backdrop-blur-lg", "z-10", "p-6", "md:hidden", "smooth-transition", mobile_menu_classes)}>
-                { nav_items(Some(Callback::from(move |_| mobile_menu_open.set(false)))) }
+                { nav_items(Some(Callback::from(move |_| onclick.set(false)))) }
             </div>
         </>
     }
