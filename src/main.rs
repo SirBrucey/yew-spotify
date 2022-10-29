@@ -1,6 +1,10 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 
+mod components;
+
+use components::sidebar::SideBar;
+
 #[derive(Routable, PartialEq, Clone, Debug)]
 pub enum Routes {
     #[at("/")]
@@ -46,7 +50,7 @@ fn app() -> Html {
     html! {
         <BrowserRouter>
             <div class={classes!("relative", "flex")}>
-                <div>{"Sidebar"}</div>
+                <div><SideBar /></div>
                 <div class={classes!("flex", "flex-1", "flex-col", "bg-gradient-to-br", "from-black", "to-[#121286]")}>
                     <div>{"Search Bar"}</div>
                     <div class={classes!("px-6", "h-[calc(100vh-72px)]", "overflow-y-scroll", "hide-scrollbar", "flex", "xl:flex-row", "flex-col-reverse")}>
