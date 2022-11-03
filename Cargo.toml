@@ -15,3 +15,4 @@ log = "0.4.16"
 wasm-bindgen-futures = "0.4.30"
 serde = { version = "1.0.48", features = ["derive"] }
 serde_json = "1.0.79"
+web-sys = { version = "0.3.60", features = ["FocusEvent", "Event"] }

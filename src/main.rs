@@ -3,7 +3,7 @@ use yew_router::prelude::*;
 
 mod components;
 
-use components::sidebar::SideBar;
+use components::{searchbar::SearchBar, sidebar::SideBar};
 
 #[derive(Routable, PartialEq, Clone, Debug)]
 pub enum Routes {
@@ -52,7 +52,7 @@ fn app() -> Html {
             <div class={classes!("relative", "flex")}>
                 <div><SideBar /></div>
                 <div class={classes!("flex", "flex-1", "flex-col", "bg-gradient-to-br", "from-black", "to-[#121286]")}>
-                    <div>{"Search Bar"}</div>
+                    <SearchBar />
                     <div class={classes!("px-6", "h-[calc(100vh-72px)]", "overflow-y-scroll", "hide-scrollbar", "flex", "xl:flex-row", "flex-col-reverse")}>
                         <div class={classes!("flex-1", "h-fit", "pb-40")}>
                             <Switch <Routes> render={Switch::render(switch)} />
